@@ -17,6 +17,8 @@
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
+        <action id="action.GenerateFeatureAction" class="action.GenerateFeatureAction" text="Generate Feature ">
+            <add-to-group group-id="CodeMenu" anchor="first"/>
+        </action>
     </actions>
 </idea-plugin>
