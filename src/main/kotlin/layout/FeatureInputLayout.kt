@@ -1,26 +1,29 @@
 package layout
 
+import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.ui.layout.panel
+import utils.CreateFeatureUtil
 import java.awt.Dimension
 import javax.swing.*
+import com.intellij.openapi.ui.Messages
 
 class FeatureInputLayout(
-    val project: Project
+    private val project: Project,
+    private val event: AnActionEvent
 ) : DialogWrapper(project) {
 
     private val featureNameLabel: JLabel = JLabel().apply {
         name = "featureNameLabel"
     }
+
     private val featureNameTextField: JTextField = JTextField().apply {
         name = "featureNameTextField"
         minimumSize = Dimension(300, 30)
         preferredSize = Dimension(300, 30)
+        requestFocus()
     }
-
-    private fun oKAction() {}
-    private fun cancelAction() {}
 
     init {
         init()
@@ -39,13 +42,16 @@ class FeatureInputLayout(
 
     override fun doOKAction() {
         super.doOKAction()
-        oKAction()
-        print("OK action")
+        val featureName = featureNameTextField.text
+        if (featureName.isNotEmpty()) {
+            val util = CreateFeatureUtil(project)
+            util.createFeature(featureName)
+            Messages.showInfoMessage(project, "Feature $featureName created successfully", "Feature Generator")
+            util.refreshProject(event)
+        }
     }
 
     override fun doCancelAction() {
         super.doCancelAction()
-        cancelAction()
-        print("cancel action")
     }
 }

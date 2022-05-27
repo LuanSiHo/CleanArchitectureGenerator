@@ -1,0 +1,22 @@
+import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
+import 'package:$$$package_name/features/$$$feature_name/core/error/failures.dart';
+import 'package:$$$package_name/features/$$$feature_name/core/usecases/usecase.dart';
+import 'package:$$$package_name/features/$$$feature_name/domain/entities/$$$feature_name_entity.dart';
+import 'package:$$$package_name/features/$$$feature_name/domain/repositories/$$$feature_name_repository.dart';
+
+class Fetch$$$FeatureNameUseCase extends UseCase<$$$FeatureNameEntity, Fetch$$$FeatureNameParam> {
+  final $$$FeatureNameRepository repository;
+
+  Fetch$$$FeatureNameUseCase(this.repository);
+
+  @override
+  Future<Either<$$$FeatureNameFailure, $$$FeatureNameEntity>> call(Fetch$$$FeatureNameParam params) async {
+    return await repository.fetch$$$FeatureName(params: params);
+  }
+}
+
+class Fetch$$$FeatureNameParam {
+  String id;
+  Fetch$$$FeatureNameParam({@required this.id});
+}

@@ -6,7 +6,7 @@ import layout.FeatureInputLayout
 
 class GenerateFeatureAction: AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
-        val dialog = FeatureInputLayout(e.project!!)
+        val dialog = FeatureInputLayout(e.project!!, e)
         dialog.show()
     }
 }
