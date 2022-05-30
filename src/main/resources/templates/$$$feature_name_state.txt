@@ -1,34 +1,25 @@
 part of '$$$feature_name_bloc.dart';
 
-enum PDStateStatus {
+enum $$$FeatureNameStateStatus {
   init,
-  loading,
-  hide_loading,
-  loaded_success,
-  loaded_failed,
+  showLoading,
+  hideLoading,
+  loadedSuccess,
+  loadedFailed,
 }
 
-class PDState extends Equatable {
-  final PDStateStatus? status;
-  final $$$FeatureNameEntity? detail;
-  final String? errorMessage;
+class $$$FeatureNameState extends Equatable {
+  final $$$FeatureNameStateStatus status;
+  final $$$FeatureNameEntity detail;
+  final String errorMessage;
 
-  PDState({
-    this.status,
-    this.detail,
-    this.errorMessage,
-  });
+  $$$FeatureNameState({this.status, this.detail, this.errorMessage});
 
-  PDState copyWith({
-    PDStateStatus? status,
-    $$$FeatureNameEntity? detail,
-    String? errorMessage,
-  }) =>
-      PDState(
-        status: status ?? this.status,
-        detail: detail ?? this.detail,
-        errorMessage: errorMessage ?? this.errorMessage,
-      );
+  $$$FeatureNameState copyWith({$$$FeatureNameStateStatus status, $$$FeatureNameEntity detail, String errorMessage}) =>
+      $$$FeatureNameState(
+       status: status ?? this.status,
+       detail: detail ?? this.detail,
+       errorMessage: errorMessage ?? this.errorMessage);
 
   @override
   List<Object> get props => [status ?? '', detail ?? '', errorMessage ?? ''];

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:$$$package_name/features/$$$feature_name/core/error/exceptions.dart';
-import 'package:$$$package_name/features/$$$feature_name/core/error/failures.dart';
+import 'package:$$$package_name/core/error/failures.dart';
+import 'package:$$$package_name/core/error/exceptions.dart';
 import 'package:$$$package_name/features/$$$feature_name/data/datasources/$$$feature_name_remote_data_source.dart';
 import 'package:$$$package_name/features/$$$feature_name/data/responses/$$$feature_name_response.dart';
 import 'package:$$$package_name/features/$$$feature_name/domain/entities/$$$feature_name_entity.dart';
@@ -14,14 +14,14 @@ class $$$FeatureNameRepositoryImpl implements $$$FeatureNameRepository {
   $$$FeatureNameRepositoryImpl({@required this.$$$featureNameRemoteDataSource});
 
   @override
-  Future<Either<$$$FeatureNameFailure, $$$FeatureNameEntity>> fetch$$$FeatureName({@required FetchPDParams params}) async {
+  Future<Either<Failure, $$$FeatureNameEntity>> fetch$$$FeatureName({@required Fetch$$$FeatureNameParam params}) async {
     try {
       var _response = await $$$featureNameRemoteDataSource.fetch$$$FeatureName(id: params.id);
       return Right(_mapPDResponseToEntity(response: _response));
     } on ServerException {
-      return Left($$$FeatureNameFailure(errorType: $$$FeatureNameErrorType.SERVER));
+      return Left(ServerFailure());
     } catch (e) {
-      return Left($$$FeatureNameFailure(errorType: $$$FeatureNameErrorType.SERVER));
+      return Left(ServerFailure());
     }
   }
 

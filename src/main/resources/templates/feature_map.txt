@@ -1,6 +1,3 @@
-lib/features/$$$feature_name/core/error/exceptions.txt
-lib/features/$$$feature_name/core/error/failures.txt
-lib/features/$$$feature_name/core/usecases/usecase.txt
 lib/features/$$$feature_name/di/$$$feature_name_injector.txt
 lib/features/$$$feature_name/data/datasources/$$$feature_name_remote_data_source.txt
 lib/features/$$$feature_name/data/repositories/$$$feature_name_repository_impl.txt

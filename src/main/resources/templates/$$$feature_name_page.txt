@@ -5,8 +5,8 @@ import 'package:$$$package_name/features/$$$feature_name/di/$$$feature_name_inje
 import 'package:$$$package_name/features/$$$feature_name/presentation/blocs/$$$feature_name_bloc.dart';
 
 class $$$FeatureNamePage extends StatefulWidget {
-  const $$$FeatureNamePage({Key? key, this.arguments}) : super(key: key);
-  final Map<String, dynamic>? arguments;
+  const $$$FeatureNamePage({Key key, this.arguments}) : super(key: key);
+  final Map<String, dynamic> arguments;
 
   @override
   _$$$FeatureNamePageState createState() => _$$$FeatureNamePageState();
@@ -14,28 +14,28 @@ class $$$FeatureNamePage extends StatefulWidget {
 
 class _$$$FeatureNamePageState extends State<$$$FeatureNamePage> {
   bool _isLoading = false;
-  PDBloc? _pdBloc;
+  $$$FeatureNameBloc _bloc;
 
   @override
   void initState() {
-    _pdBloc = PDBloc(fetch$$$FeatureNameUseCase: fetch$$$FeatureNameUseCase);
-    _get$$$FeatureName();
+    _bloc = $$$FeatureNameBloc(fetch$$$FeatureNameUseCase: fetch$$$FeatureNameUseCase);
+    _fetch$$$FeatureNameData();
     super.initState();
   }
 
   @override
   void dispose() {
-    _pdBloc = null;
+    _bloc = null;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => _pdBloc,
+      create: (_) => _bloc,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: _widgetAppBar(title: ''),
+        appBar: AppBar(title: Text('App bar')),
         body: _buildBody(),
       ),
     );
@@ -44,43 +44,36 @@ class _$$$FeatureNamePageState extends State<$$$FeatureNamePage> {
   Widget _buildBody() {
     return Stack(
       children: [
-        BlocBuilder<PDBloc, PDState>(
+        BlocBuilder<$$$FeatureNameBloc, $$$FeatureNameState>(
           buildWhen: (previous, current) {
-            return current.status == PDStateStatus.loaded_success ||
-                current.status == PDStateStatus.loaded_failed;
+            return current.status == $$$FeatureNameStateStatus.loadedSuccess ||
+                current.status == $$$FeatureNameStateStatus.loadedFailed;
           },
           builder: (_, state) {
-            if (state.status == PDStateStatus.loaded_success) {
+            if (state.status == $$$FeatureNameStateStatus.loadedSuccess) {
               return SafeArea(
                 child: Stack(
-                  children: [
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      child: Center(child: Text('Welcome!')),
-                    ),
-                  ],
+                  children: [Positioned(top: 0, left: 0, right: 0, bottom: 0, child: Center(child: Text('Welcome!')))
+                  ]
                 ),
               );
-            } else if (state.status == PDStateStatus.loaded_failed) {
+            } else if (state.status == $$$FeatureNameStateStatus.loadedFailed) {
               return Container(color: Colors.red);
             } else {
               return const SizedBox();
             }
           },
         ),
-        BlocListener<PDBloc, PDState>(
+        BlocListener<$$$FeatureNameBloc, $$$FeatureNameState>(
           listenWhen: (previous, current) {
-            return current.status == PDStateStatus.loading || current.status == PDStateStatus.hide_loading;
+            return current.status == $$$FeatureNameStateStatus.showLoading || current.status == $$$FeatureNameStateStatus.hideLoading;
           },
           listener: (_, state) {
             switch (state.status) {
-              case PDStateStatus.loading:
+              case $$$FeatureNameStateStatus.showLoading:
                 _handleLoadingData(true);
                 break;
-              case PDStateStatus.hide_loading:
+              case $$$FeatureNameStateStatus.hideLoading:
                 _handleLoadingData(false);
                 break;
               default:
@@ -92,33 +85,11 @@ class _$$$FeatureNamePageState extends State<$$$FeatureNamePage> {
     );
   }
 
-  PreferredSize _widgetAppBar({String? title}) => PreferredSize(
-        child: AppBar(
-          shape: const Border(
-            bottom: const BorderSide(
-              color: Colors.grey,
-              width: 1,
-            ),
-          ),
-          backgroundColor: Colors.white,
-          backwardsCompatibility: false,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-          elevation: 0,
-          leading: BackButton(color: Colors.black),
-          title: Text('$title'),
-          centerTitle: true,
-        ),
-        preferredSize: const Size.fromHeight(44),
-      );
-
   Widget _widgetLoading(bool isLoading) {
     if (isLoading) {
       return Positioned.fill(
         child: Container(
-          color: Colors.transparent, // set to disable gesture on screen
+          color: Colors.transparent,
           child: Center(child: Text('Loading...')),
         ),
       );
@@ -132,7 +103,7 @@ class _$$$FeatureNamePageState extends State<$$$FeatureNamePage> {
       });
   }
 
-  void _get$$$FeatureName() {
-    _pdBloc?.add(EventFetch$$$FeatureName(id: 'xxx'));
+  void _fetch$$$FeatureNameData() {
+    _bloc?.add(EventFetch$$$FeatureName(id: 'xxx'));
   }
 }

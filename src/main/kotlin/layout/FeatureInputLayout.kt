@@ -22,13 +22,17 @@ class FeatureInputLayout(
         name = "featureNameTextField"
         minimumSize = Dimension(300, 30)
         preferredSize = Dimension(300, 30)
-        requestFocus()
     }
 
     init {
         init()
         title = "Feature Generator"
     }
+
+    override fun getPreferredFocusedComponent(): JComponent? {
+        return featureNameTextField
+    }
+
 
     override fun createCenterPanel(): JComponent = panel {
         row("Feature Name: ") {
@@ -38,6 +42,11 @@ class FeatureInputLayout(
     }.apply {
         minimumSize = Dimension(450, 60)
         preferredSize = Dimension(450, 60)
+    }
+
+    override fun show() {
+        super.show()
+        featureNameTextField.requestFocus()
     }
 
     override fun doOKAction() {
