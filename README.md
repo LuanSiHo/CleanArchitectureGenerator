@@ -7,5 +7,7 @@ This project is a Kotlin version of [plugin-utils](https://github.com/nguyencse/
 - Generate files and folders based on Clean Architect template from [Resocoder Blog](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
 
 ## How To Use
+Code -> Generate Feature OG -> Input your feature name
+
 <img src="screenshot/1.png" width="879" height="704">    
 <img src="screenshot/2.png" width="879" height="704">
