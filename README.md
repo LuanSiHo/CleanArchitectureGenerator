@@ -8,4 +8,4 @@ This project is a Kotlin version of [plugin-utils](https://github.com/nguyencse/
 
 ## How To Use
 <img src="screenshot/1.png" width="879" height="704">    
-<img src="screenshot/1.png" width="879" height="704">
+<img src="screenshot/2.png" width="879" height="704">
