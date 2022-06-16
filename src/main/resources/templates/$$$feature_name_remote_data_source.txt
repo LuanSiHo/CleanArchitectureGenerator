@@ -7,6 +7,6 @@ abstract class $$$FeatureNameRemoteDataSource {
 class $$$FeatureNameRemoteDataSourceImpl implements $$$FeatureNameRemoteDataSource {
   @override
   Future<$$$FeatureNameResponse> fetch$$$FeatureName({String id}) async {
-    return $$$FeatureNameResponse();
+    return $$$FeatureNameResponse(id: "", name: "");
   }
 }

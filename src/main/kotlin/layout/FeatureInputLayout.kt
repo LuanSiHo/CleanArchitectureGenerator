@@ -51,7 +51,9 @@ class FeatureInputLayout(
 
     override fun doOKAction() {
         super.doOKAction()
-        val featureName = featureNameTextField.text
+        var featureName = featureNameTextField.text
+        featureName = featureName.trim().toLowerCase()
+        featureName = featureName.replace(" ", "_")
         if (featureName.isNotEmpty()) {
             val util = CreateFeatureUtil(project)
             util.createFeature(featureName)
